@@ -45,12 +45,6 @@ class Pong {
     this._context = canvas.getContext("2d");
     this.ball = new Ball();
 
-    this.ball.pos.x = 100;
-    this.ball.pos.y = 50;
-
-    this.ball.vel.x = 100;
-    this.ball.vel.y = 100;
-
     this.players = [new Player(), new Player()];
 
     this.players[0].pos.x = 40;
@@ -75,6 +69,8 @@ class Pong {
     };
 
     callback();
+
+    this.reset();
   }
 
   drawRect(rect) {
@@ -104,6 +100,14 @@ class Pong {
     this.players.forEach((player) => this.drawRect(player));
   }
 
+  reset() {
+    this.ball.pos.x = this._canvas.width / 2;
+    this.ball.pos.y = this._canvas.height / 2;
+
+    this.ball.vel.x = 300;
+    this.ball.vel.y = 300;
+  }
+
   // We use the time delta to calculate how much movement should the
   // ball have
   update(dt) {
@@ -111,7 +115,18 @@ class Pong {
     this.ball.pos.y += this.ball.vel.y * dt;
 
     if (this.ball.left < 0 || this.ball.right > this._canvas.width) {
-      this.ball.vel.x = -this.ball.vel.x;
+      // Concise way to check if something is true and assign it to an integer
+      const playerId = (this.ball.vel.x < 0) | 0;
+
+      // Long way of doing the same thing
+      //   if (this.ball.vel.x < 0) {
+      //     playerId = 1;
+      //   } else {
+      //     playerId = 0;
+      //   }
+
+      this.players[playerId].score++;
+      this.reset();
     }
     if (this.ball.top < 0 || this.ball.bottom > this._canvas.height) {
       this.ball.vel.y = -this.ball.vel.y;
