@@ -10,13 +10,6 @@ class Rect {
     this.pos = new Vec();
     this.size = new Vec(w, h);
   }
-}
-
-class Ball extends Rect {
-  constructor() {
-    super(10, 10);
-    this.vel = new Vec();
-  }
 
   get left() {
     return this.pos.x - this.size.x / 2;
@@ -29,6 +22,13 @@ class Ball extends Rect {
   }
   get bottom() {
     return this.pos.y + this.size.y / 2;
+  }
+}
+
+class Ball extends Rect {
+  constructor() {
+    super(10, 10);
+    this.vel = new Vec();
   }
 }
 
@@ -53,6 +53,11 @@ class Pong {
 
     this.players = [new Player(), new Player()];
 
+    this.players[0].pos.x = 40;
+    this.players[1].pos.x = this._canvas.width - 40;
+
+    this.players.forEach((player) => (player.pos.y = this._canvas.height / 2));
+
     // RequestAnimationFrame give back the time elapsed since the last time
     // we refreshed the page and take in a callback
     let lastTime;
@@ -75,7 +80,7 @@ class Pong {
   drawRect(rect) {
     // Add the white ball
     this._context.fillStyle = "#fff";
-    this._context.fillRect(rect.pos.x, rect.pos.y, rect.size.x, rect.size.y);
+    this._context.fillRect(rect.left, rect.top, rect.size.x, rect.size.y);
   }
 
   draw() {
