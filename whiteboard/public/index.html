@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Whiteboard</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div id="cursors">
+      <!-- mouse pointers will be created here -->
+    </div>
+
+    <canvas class="whiteboard"> </canvas>
+
+    <!-- <hgroup id="instruction">
+      <h1>Whiteboard</h1>
+      <h2>Tip: if whiteboard gets dirty, simply reload</h2>
+    </hgroup> -->
+    <div class="colors">
+      <div class="color black"></div>
+      <div class="color red"></div>
+      <div class="color green"></div>
+      <div class="color blue"></div>
+      <div class="color yellow"></div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/script.js"></script>
+  </body>
+</html>
