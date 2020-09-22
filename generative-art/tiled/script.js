@@ -1,7 +1,7 @@
 var canvas = document.querySelector('canvas');
 var context = canvas.getContext('2d');
 
-let step = 20;
+let step = 30;
 
 var size = window.innerHeight;
 var dpr = window.devicePixelRatio;
@@ -15,11 +15,12 @@ context.lineWidth = 2;
 function draw(x, y, width, height) {
   const leftToRight = Math.random() >= 0.5;
 
+  //   let colorh = Math.floor(Math.random() * 100) + 110;
   let colorh = Math.floor(Math.random() * 255) + 1;
   context.strokeStyle = `hsl(
         ${colorh},
         53%,
-        57%,
+        77%,
         1`;
   context.beginPath();
 
